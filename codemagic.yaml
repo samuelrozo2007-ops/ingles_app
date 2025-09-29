@@ -1,0 +1,19 @@
+workflows:
+  build-kivy:
+    name: Build Kivy Android App
+    environment:
+      vars:
+        BUILDOZER_WARN_ON_ROOT: "0"
+      android:
+        image: ubuntu-20.04-android-30
+    scripts:
+      - name: Install dependencies
+        script: |
+          apt-get update
+          apt-get install -y python3-pip python3-setuptools python3-wheel               git zip unzip openjdk-17-jdk zlib1g-dev libncurses5-dev libstdc++6               ccache libffi-dev
+          pip install Cython==0.29.36 buildozer
+      - name: Build APK
+        script: |
+          buildozer -v android debug
+    artifacts:
+      - buildozer/bin/*.apk
