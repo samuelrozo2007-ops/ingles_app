@@ -4,8 +4,7 @@ workflows:
     environment:
       vars:
         BUILDOZER_WARN_ON_ROOT: "0"
-      android:
-        image: ubuntu-20.04-android-30
+      image: ubuntu-20.04
     scripts:
       - name: Install dependencies
         script: |
