@@ -1,0 +1,36 @@
+<MenuScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Bienvenido, ingresa tu nombre"
+        TextInput:
+            id: nombre
+            multiline: False
+        Button:
+            text: "Comenzar"
+            on_release:
+                root.manager.get_screen("game").start_game(nombre.text)
+                root.manager.current = "game"
+
+<GameScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: root.mensaje
+        Label:
+            text: f"Vidas: {root.vidas} | Puntaje: {root.puntaje}"
+        Button:
+            text: "Terminar Juego"
+            on_release:
+                root.manager.get_screen("gameover").final_score(root.puntaje)
+                root.manager.current = "gameover"
+
+<GameOverScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: root.mensaje_final
+        Button:
+            text: "Reiniciar"
+            on_release:
+                root.manager.current = "menu"
